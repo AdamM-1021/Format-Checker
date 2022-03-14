@@ -1,0 +1,67 @@
+**************
+* Grid Monitor
+* Computer Science II
+* 1/28/2022
+* Adam McCall
+**************
+
+OVERVIEW:
+
+This program checks a 2d array of values to see if any of them are at risk of exploding.
+It does this by checking if any given cell deviates more than 50% from the average of it's
+surrounding values.
+
+ 
+INCLUDED FILES:
+
+* GridMonitor.java - source file
+* GridMonitorInterface.java - source file
+* GridMonitorTest.java - source file
+* README - this file
+
+
+COMPILING AND RUNNING: 
+
+Make a Java file, initialize a GridMonitor class using
+new GridMonitor(String filename)
+Printing the object will give all relevant information
+to monitor the grid.
+
+
+PROGRAM DESIGN:
+
+GridMonitor implements the GridMonitorInterface interface, which defines methods related 
+to the calculation of which cells are in danger. It's end purpose is to find which cells
+have values that are more than 50% off of the average of the surrounding cells values.
+
+The input file is first converted into a 2D array of doubles. A scanner uses the first line
+to determine the dimensions of the grid, and uses 2 for loops to fill in the numbers.
+
+To determine the sum of the surrounding cells, a new 2D array is created. Each original cell
+is checked to see if it is on an edge, in which case the own value of the cell is added. If not,
+All surrounding cells are added to the new array. Other functions divide these sums by 4 to get
+the average, and again by 2 in separate arrays to find the safe ranges. Original values are checked 
+and put into a 2D boolean array, telling which cells are unsafe.
+
+The program followed the methods described in GridMonitorInterface, along with a toString that shows
+original values, safe ranges, and which cells are in danger.
+
+
+Testing:
+
+A tester file was provided, which was used to determine the requirements that needed to be met, and
+check for any bugs in the program. The program can handle a blank file and nonexistent files, but other
+odd inputs such as negative dimensions or lack of dimension definition has not been accounted for at this
+time.
+
+
+Discussion:
+
+There weren't too many snags during development, but there was some trouble with encapsulation, as I originally
+returned the grid itself in the getBaseGrid method, allowing users to change it. Other problems included
+negative delta values, which I fixed by adding an absolute value, and being unable to read doubles, which
+was fixed just by changing nextInt() into nextDouble().
+
+Finding an effective and efficient way to add the surrounding cells was the most challenging part, as there 
+were a lot of conditions I had to account for. I also took a while implementing an effective and to-the-point
+toString, which displays all relevant information.
